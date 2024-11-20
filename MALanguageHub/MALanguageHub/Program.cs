@@ -1,9 +1,17 @@
+using MALanguageHub.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+string connectionstring = builder.Configuration.GetConnectionString("myconstring");
+builder.Services.AddDbContext<MALHdbcontext>(option => option.UseSqlServer(connectionstring));
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
