@@ -10,5 +10,10 @@ namespace MALanguageHub.Data
             
         }
         public DbSet<Aboutus> tbl_aboutus { get; set; }
+        public DbSet<Courses> tbl_courses { get; set; }
+        public DbSet<Home> tbl_home { get; set; }
+        public DbSet<Login> tbl_login { get; set; }
+        public DbSet<OurProfessionals> tbl_ourprofessionals { get; set; }
+        public DbSet<StudentReviews> tbl_studentreviews { get; set; } 
     }
 }

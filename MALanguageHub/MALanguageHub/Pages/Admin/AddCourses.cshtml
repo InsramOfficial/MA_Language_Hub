@@ -1,0 +1,73 @@
+﻿@page
+@model MALanguageHub.Pages.Admin.AddCoursesModel
+ @{
+   
+}
+
+<div class="container">
+   
+    <form method="post" enctype="multipart/form-data">
+
+      
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center">Add Courses</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input class="form-control" asp-for="courses.Title" required placeholder="Enter course title">
+                    <span asp-validation-for="courses.Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Starting Date</label>
+                    <input class="form-control" asp-for="courses.StartingDate" required type="date" placeholder="Select starting date">
+                    <span asp-validation-for="courses.StartingDate" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Allocated Teacher</label>
+                    <input class="form-control" asp-for="courses.AllocatedTeacher" required placeholder="Enter teacher name">
+                    <span asp-validation-for="courses.AllocatedTeacher" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image</label>
+                    <input class="form-control" asp-for="courses.Image" type="file" required placeholder="Upload course image">
+                    <span asp-validation-for="courses.Image" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" asp-for="courses.Description" required rows="5" placeholder="Enter course description"></textarea>
+                    <span asp-validation-for="courses.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Duration</label>
+                    <input class="form-control" asp-for="courses.Duration" required placeholder="Enter course duration (e.g., 6 weeks)">
+                    <span asp-validation-for="courses.Duration" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select id="status" class="form-control" required aria-label="Select course status" asp-for="courses.Status">
+                        <option value="" selected>Select course status</option>
+                        <option value="Available">Available</option>
+                        <option value="NotAvailable">Not Available</option>
+                    </select>
+                    <span asp-validation-for="courses.Status" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-4 text-center">
+               
+                <button type="submit" class="btn btn-primary">Add Courses</button>
+            </div>
+        </div>
+    </form>
+</div>

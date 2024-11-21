@@ -1,0 +1,96 @@
+﻿@page
+@model MALanguageHub.Pages.Admin.UpdateAboutUsModel
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>AddAboutUs</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            @if (successMessage != null)
+            {
+                <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="text-center">
+                        <strong>Success!</strong> @successMessage
+                    </div>
+                   
+                </div>
+            }
+            @if (errorMessage != null)
+            {
+                <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="text-center"> 
+                        <strong>Error!</strong> @errorMessage
+                     </div>
+                  
+                   
+                </div>
+            }
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <h1>
+                        Update About Us
+                    </h1>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <label class="form-label">Title</label>
+                    <input class="form-control" asp-for="Aboutus.Title" required placeholder="Enter Your Title">
+                    <span asp-validation-for="Aboutus.Title" class="text-danger"></span>
+                    <input type="hidden" asp-for="Aboutus.Id"/>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" asp-for="Aboutus.Description" required placeholder="Enter Your Description" rows="5"></textarea>
+                    <span asp-validation-for="Aboutus.Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row  justify-content-center">
+                <div class="col-md-6">
+
+                    <label class="form-label">Image</label>
+                    <input class="form-control" required asp-for="Aboutus.Image">
+                    <span asp-validation-for="Aboutus.Image" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row  justify-content-center mt-3">
+                <div class="col-md-6">
+                    <input type="submit" value="Add Education" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        // Hide success alert after 5 seconds
+        setTimeout(function () {
+            $('#successAlert').fadeOut('slow');
+        }, 5000);
+
+        // Hide error alert after 5 seconds
+        setTimeout(function () {
+            $('#errorAlert').fadeOut('slow');
+        }, 5000);
+    </script>
+</body>
+</html>
