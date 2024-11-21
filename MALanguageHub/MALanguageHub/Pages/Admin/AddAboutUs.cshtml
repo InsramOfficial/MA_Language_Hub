@@ -13,8 +13,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <label class="form-label">Title</label>
-                <input class="form-control" asp-for="Aboutus.Title" required placeholder="Enter Your Title">
+                <label asp-for="Aboutus.Title" class="form-label"></label>
+                <input class="form-control" asp-for="Aboutus.Title" placeholder="Enter Your Title">
                 <span asp-validation-for="Aboutus.Title" class="text-danger"></span>
 
             </div>
@@ -22,16 +22,17 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
 
-                <label class="form-label">Description</label>
-                <textarea class="form-control" asp-for="Aboutus.Description" required rows="5" placeholder="Enter Your Description"></textarea>
+                <label asp-for="Aboutus.Description" class="form-label"></label>
+                <textarea class="form-control" asp-for="Aboutus.Description" rows="5" placeholder="Enter Your Description"></textarea>
                 <span asp-validation-for="Aboutus.Description" class="text-danger"></span>
             </div>
         </div>
         <div class="row  justify-content-center">
             <div class="col-md-6">
 
-                <label class="form-label">Image</label>
-                <input class="form-control" required asp-for="Aboutus.Image">
+                <label asp-for="Aboutus.ImageName" class="form-label"></label>
+                <input class="form-control" asp-for="Aboutus.Image">
+                <input type="hidden" asp-for="Aboutus.ImageName" value="MALH" />
                 <span asp-validation-for="Aboutus.Image" class="text-danger"></span>
             </div>
         </div>
