@@ -8,9 +8,9 @@ builder.Services.AddRazorPages();
 
 string connectionstring = builder.Configuration.GetConnectionString("myconstring");
 builder.Services.AddDbContext<MALHdbcontext>(option => option.UseSqlServer(connectionstring));
-
+builder.Services.AddSession();
 var app = builder.Build();
-
+app.UseSession();
 
 
 // Configure the HTTP request pipeline.

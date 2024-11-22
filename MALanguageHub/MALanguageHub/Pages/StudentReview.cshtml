@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+    <!--    meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
@@ -125,13 +125,14 @@
           border-radius: 30px !important;
         }
 
-        .btn.btn-primary {
+               .btn.btn-primary {
           border-radius: 30px;
-          background: #ef4339;
+          background: #28a745; /* Changed to green */
           color: #fff;
-          -webkit-box-shadow: 0 15px 30px 0 rgba(239, 67, 57, 0.2);
-          box-shadow: 0 15px 30px 0 rgba(239, 67, 57, 0.2);
+          -webkit-box-shadow: 0 15px 30px 0 rgba(40, 167, 69, 0.2);
+          box-shadow: 0 15px 30px 0 rgba(40, 167, 69, 0.2);
         }
+
 
         .btn:hover {
           color: #fff;
@@ -357,11 +358,15 @@
                             <div class="row">
                                 <div class="col-md-6 form-group mb-3">
                                     <label asp-for="StudentReviews.Name" class="col-form-label"></label>
-                                    <input asp-for="StudentReviews.Name" required class="form-control" placeholder="Your name">
+                                    <input asp-for="StudentReviews.Name"    class="form-control" placeholder="Your name">
+                                    <span asp-validation-for="StudentReviews.Name" class="text-danger"></span>
+                                    
                                 </div>
                                 <div class="col-md-6 form-group mb-3">
                                     <label asp-for="StudentReviews.Designation" class="col-form-label">Profession</label>
-                                    <input asp-for="StudentReviews.Designation" required class="form-control" placeholder="Your Professional">
+                                    <input asp-for="StudentReviews.Designation"    class="form-control" placeholder="Your Professional">
+                                    <span asp-validation-for="StudentReviews.Designation" class="text-danger"></span>
+
                                 </div>
                             </div>
 
@@ -369,8 +374,10 @@
                                 <div class="col-md-12 form-group mb-3">
 
                                     <label asp-for="StudentReviews.Review" class="col-form-label">Message *</label>
-                                    <textarea asp-for="StudentReviews.Review" required id="limitedTextarea" class="form-control" placeholder="Write your message"></textarea>
+                                    <textarea asp-for="StudentReviews.Review"    id="limitedTextarea" class="form-control" placeholder="Write your message"></textarea>
                                     <p id="wordCount">Words: 0/15</p>
+                                    <span asp-validation-for="StudentReviews.Review" class="text-danger"></span>
+
                                 </div>
                             </div>
                             <button class="btn btn-primary rounded-0 py-2 px-4" id="submit" type="submit">Submit</button>
