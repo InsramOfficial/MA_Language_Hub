@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin
         MALHdbcontext db;
         IWebHostEnvironment env;
         public List<Courses> courses { get; set; }
+        public string UserName;
         public ShowCoursesModel(MALHdbcontext _db, IWebHostEnvironment _env)
         {
             db = _db;
@@ -25,6 +26,7 @@ namespace MALanguageHub.Pages.Admin
             }
             
             courses =db.tbl_courses.ToList();
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
 

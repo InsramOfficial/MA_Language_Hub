@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin
         private readonly MALHdbcontext db;
         private readonly IWebHostEnvironment env;
         public Aboutus Aboutus { get; set; }
+        public string UserName;
 
         public UpdateAboutUsModel(MALHdbcontext _db, IWebHostEnvironment _env)
         {
@@ -25,6 +26,7 @@ namespace MALanguageHub.Pages.Admin
                 return RedirectToPage("/Admin/Login");
             }
             Aboutus = db.tbl_aboutus.FirstOrDefault();
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
         public IActionResult OnPost(Aboutus Aboutus)

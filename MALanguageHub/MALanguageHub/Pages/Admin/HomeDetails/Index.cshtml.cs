@@ -7,6 +7,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
 {
     public class IndexModel : PageModel
     {
+        public string UserName;
         private readonly MALHdbcontext db;
         public List<Home> Homedetails {  get; set; }
 
@@ -20,6 +21,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
+            UserName = HttpContext.Session.GetString("FullName");
             Homedetails = db.tbl_home.Take(3).ToList();
             return Page();
 

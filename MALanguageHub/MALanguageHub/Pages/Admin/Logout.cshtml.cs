@@ -7,8 +7,15 @@ namespace MALanguageHub.Pages.Admin
     {
         public IActionResult OnGet()
         {
-            HttpContext.Session.Clear();
-            return RedirectToPage("/Admin/Login");
+            if (HttpContext.Session.GetString("flag") == "true")
+            {
+                HttpContext.Session.Clear();
+                return RedirectToPage("/Admin/Login");
+            }
+            else
+            {
+                return RedirectToPage("/Admin/Login");
+            }
         }
     }
 }

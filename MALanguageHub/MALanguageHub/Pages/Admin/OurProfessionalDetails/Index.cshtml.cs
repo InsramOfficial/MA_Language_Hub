@@ -10,7 +10,8 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
 		private readonly MALHdbcontext db;
 
 		public List<OurProfessionals> professionals {  get; set; }
-		public IndexModel(MALHdbcontext db)
+        public string UserName;
+        public IndexModel(MALHdbcontext db)
 		{
 			this.db = db;
 		}
@@ -21,7 +22,8 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
                 return RedirectToPage("/Admin/Login");
             }
             professionals = db.tbl_ourprofessionals.ToList();
-			return Page();
+            UserName = HttpContext.Session.GetString("FullName");
+            return Page();
         }
 
 		public IActionResult OnGetDelete(int id) 

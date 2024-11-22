@@ -10,6 +10,7 @@ namespace MALanguageHub.Pages
         private readonly MALHdbcontext db;
         private readonly IWebHostEnvironment env;
         public StudentReviews StudentReviews { get; set; }
+        public string UserName;
 
         public AddStudentReviewModel(MALHdbcontext _db, IWebHostEnvironment _env)
         {
@@ -23,6 +24,7 @@ namespace MALanguageHub.Pages
             {
                 return RedirectToPage("/Admin/Login");
             }
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
         public IActionResult OnPost(StudentReviews StudentReviews)

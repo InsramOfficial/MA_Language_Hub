@@ -10,7 +10,8 @@ namespace MALanguageHub.Pages
 		MALHdbcontext db;
 		IWebHostEnvironment env;
 		public List<StudentReviews> StudentReviews { get; set; }
-		public ShowStudentReviewModel(MALHdbcontext _db, IWebHostEnvironment _env)
+        public string UserName;
+        public ShowStudentReviewModel(MALHdbcontext _db, IWebHostEnvironment _env)
 		{
 			db = _db;
 			env = _env;
@@ -23,7 +24,8 @@ namespace MALanguageHub.Pages
                 return RedirectToPage("/Admin/Login");
             }
             StudentReviews = db.tbl_studentreviews.ToList();
-			return Page();
+            UserName = HttpContext.Session.GetString("FullName");
+            return Page();
 		}
 
 		public IActionResult OnGetDelete(int Id)

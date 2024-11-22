@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
         private readonly IWebHostEnvironment env;
 
         public OurProfessionals professional {  get; set; }
+        public string UserName;
         public EditProfessionalModel(MALHdbcontext db, IWebHostEnvironment env)
         {
             this.db = db;
@@ -23,6 +24,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
                 return RedirectToPage("/Admin/Login");
             }
             professional = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
         public IActionResult OnPost(OurProfessionals professional)

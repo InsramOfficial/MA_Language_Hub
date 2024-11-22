@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         private readonly IWebHostEnvironment env;
 
         public Home Homedetail {  get; set; }
+        public string UserName;
         public AddHomeDetailsModel(MALHdbcontext db, IWebHostEnvironment env)
         {
             this.db = db;
@@ -22,6 +23,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
         public IActionResult OnPost(Home Homedetail)

@@ -5,12 +5,14 @@ namespace MALanguageHub.Pages.Admin
 {
     public class IndexModel : PageModel
     {
+        public string UserName;
         public IActionResult OnGet()
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
                 return RedirectToPage("/Admin/Login");
             }
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
         public IActionResult OnPost()

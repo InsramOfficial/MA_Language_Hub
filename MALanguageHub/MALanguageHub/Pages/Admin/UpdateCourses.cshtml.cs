@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin
         IWebHostEnvironment env;
         [BindProperty]
         public Courses courses { get; set; }
+        public string UserName;
         public UpdateCoursesModel(MALHdbcontext _db, IWebHostEnvironment _env)
         {
             db = _db;
@@ -24,6 +25,7 @@ namespace MALanguageHub.Pages.Admin
                 return RedirectToPage("/Admin/Login");
             }
             courses = db.tbl_courses.Find(id);
+            UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }
 
