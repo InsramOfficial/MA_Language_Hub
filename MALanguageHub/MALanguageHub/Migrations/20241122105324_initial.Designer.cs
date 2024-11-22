@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MALanguageHub.Migrations
 {
     [DbContext(typeof(MALHdbcontext))]
-    [Migration("20241121104308_AddedModels")]
-    partial class AddedModels
+    [Migration("20241122105324_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,6 @@ namespace MALanguageHub.Migrations
                         .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("ImageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

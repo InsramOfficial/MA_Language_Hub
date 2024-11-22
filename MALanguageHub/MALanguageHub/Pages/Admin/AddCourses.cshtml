@@ -19,22 +19,22 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Title</label>
-                    <input class="form-control" asp-for="courses.Title" required placeholder="Enter course title">
+                    <input class="form-control" asp-for="courses.Title" placeholder="Enter course title">
                     <span asp-validation-for="courses.Title" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Starting Date</label>
-                    <input class="form-control" asp-for="courses.StartingDate" required type="date" placeholder="Select starting date">
+                    <input class="form-control" asp-for="courses.StartingDate" type="date" placeholder="Select starting date">
                     <span asp-validation-for="courses.StartingDate" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Allocated Teacher</label>
-                    <input class="form-control" asp-for="courses.AllocatedTeacher" required placeholder="Enter teacher name">
+                    <input class="form-control" asp-for="courses.AllocatedTeacher" placeholder="Enter teacher name">
                     <span asp-validation-for="courses.AllocatedTeacher" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Image</label>
-                    <input class="form-control" asp-for="courses.Image" type="file" required placeholder="Upload course image">
+                    <input class="form-control" asp-for="courses.Image" type="file" placeholder="Upload course image">
                     <span asp-validation-for="courses.Image" class="text-danger"></span>
                 </div>
             </div>
@@ -43,17 +43,17 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" asp-for="courses.Description" required rows="5" placeholder="Enter course description"></textarea>
+                    <textarea class="form-control" asp-for="courses.Description" rows="5" placeholder="Enter course description"></textarea>
                     <span asp-validation-for="courses.Description" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Duration</label>
-                    <input class="form-control" asp-for="courses.Duration" required placeholder="Enter course duration (e.g., 6 weeks)">
+                    <input class="form-control" asp-for="courses.Duration" placeholder="Enter course duration (e.g., 6 weeks)">
                     <span asp-validation-for="courses.Duration" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
-                    <select id="status" class="form-control" required aria-label="Select course status" asp-for="courses.Status">
+                    <select id="status" class="form-control" aria-label="Select course status" asp-for="courses.Status">
                         <option value="" selected>Select course status</option>
                         <option value="Available">Available</option>
                         <option value="NotAvailable">Not Available</option>

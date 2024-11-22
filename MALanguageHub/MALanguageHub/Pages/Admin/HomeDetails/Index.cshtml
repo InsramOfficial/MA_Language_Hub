@@ -1,0 +1,99 @@
+﻿@page
+@model MALanguageHub.Pages.Admin.HomeDetails.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Admin_files/css/CrudTableStyleSheet.css" />
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+	<script>
+		$(document).ready(function () {
+			// Activate tooltip
+			$('[data-toggle="tooltip"]').tooltip();
+
+			// Select/Deselect checkboxes
+			var checkbox = $('table tbody input[type="checkbox"]');
+			$("#selectAll").click(function () {
+				if (this.checked) {
+					checkbox.each(function () {
+						this.checked = true;
+					});
+				} else {
+					checkbox.each(function () {
+						this.checked = false;
+					});
+				}
+			});
+			checkbox.click(function () {
+				if (!this.checked) {
+					$("#selectAll").prop("checked", false);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>Manage <b>Home Details</b></h2>
+						</div>
+						<div class="col-sm-6">
+							<a asp-page="AddHomeDetails" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Home Detail</span></a>
+
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Title</th>
+							<th scope="col">Description</th>
+							<th scope="col">Image</th>
+							<th scope="col" colspan="2" class="text-center">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@{
+							var i = 1;
+						}
+						@foreach (var Home in Model.Homedetails)
+						{
+							<tr>
+								<th scope="row">@i</th>
+								<td>@Home.Title</td>
+								<td>@Home.Description</td>
+								<td>
+									<img src="~/images/@Home.ImageName" alt="Course Image" style="max-width: 100px; max-height: 50px;" />
+								</td>
+								<td>
+									<a asp-page="EditHomeDetails" class="edit" asp-route-id="@Home.Id"><i class="material-icons" title="Edit">&#xE254;</i></a>
+									<a asp-page-handler="Delete" asp-route-id="@Home.Id" class="delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+								</td>
+							</tr>
+							i++;
+						}
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

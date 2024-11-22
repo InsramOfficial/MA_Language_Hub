@@ -36,7 +36,6 @@ namespace MALanguageHub.Migrations
                         .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("ImageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")

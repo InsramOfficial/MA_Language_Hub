@@ -1,0 +1,46 @@
+﻿@page
+@model MALanguageHub.Pages.Admin.HomeDetails.AddHomeDetailsModel
+@{
+}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h1>
+                    Add Home
+                </h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label asp-for="Homedetail.Title" class="form-label"></label>
+                <input class="form-control" asp-for="Homedetail.Title"  placeholder="Enter Your Title">
+                <span asp-validation-for="Homedetail.Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label asp-for="Homedetail.Description" class="form-label"></label>
+                <textarea class="form-control" asp-for="Homedetail.Description"  rows="5" placeholder="Enter Your Description"></textarea>
+                <span asp-validation-for="Homedetail.Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label asp-for="Homedetail.ImageName" class="form-label"></label>
+                <input class="form-control" type="file" asp-for="Homedetail.Image" >
+                <span asp-validation-for="Homedetail.Image" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <input type="submit" value="Add Home" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>

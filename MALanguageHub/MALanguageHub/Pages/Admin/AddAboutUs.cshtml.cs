@@ -8,8 +8,8 @@ namespace MALanguageHub.Pages.Admin
 {
     public class AddAboutUsModel : PageModel
     {
-        MALHdbcontext db;
-        IWebHostEnvironment env;
+        private readonly MALHdbcontext db;
+        private readonly IWebHostEnvironment env;
         public Aboutus Aboutus { get; set; }
 
         public AddAboutUsModel( MALHdbcontext _db,IWebHostEnvironment _env)

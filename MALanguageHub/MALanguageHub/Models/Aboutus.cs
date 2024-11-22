@@ -15,10 +15,9 @@ namespace MALanguageHub.Models
         [MaxLength(120,ErrorMessage = "Description cannot be more than 120 characters")]
         public string Description { get; set; }
         [Display(Name = "Image")]
-        [Required(ErrorMessage = "Please upload image")]
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
     }
 }
