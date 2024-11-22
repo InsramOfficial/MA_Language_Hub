@@ -18,14 +18,14 @@ namespace MALanguageHub.Models
         [StringLength(100, ErrorMessage = "Password cannot exceed 100 characters.")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Full Name is required.")]
+       
         [Display(Name = "Full Name")]
         [StringLength(200, ErrorMessage = "Full Name cannot exceed 200 characters.")]
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
         [Display(Name = "Image")]
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
 
     }
