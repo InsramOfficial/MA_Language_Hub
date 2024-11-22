@@ -29,7 +29,7 @@ namespace MALanguageHub.Pages
                 db.SaveChanges();
                 TempData["SuccessMessage"] = "Review Added Successfully";
             }
-            return RedirectToPage("AddStudentReview");
+            return RedirectToPage("ShowStudentReview");
         }
     }
 }
