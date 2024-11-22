@@ -22,16 +22,20 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         }
         public IActionResult OnPost(Home Homedetail)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
             else
             {
-                Homedetail.ImageName = Homedetail.Image.FileName;
-                var folderpath = Path.Combine(env.WebRootPath, "images");
-                var imagepath = Path.Combine(folderpath,Homedetail.Image.FileName);
-                Homedetail.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                if (Homedetail.Image != null)
+                {
+                    Homedetail.ImageName = Homedetail.Image.FileName;
+                    var folderpath = Path.Combine(env.WebRootPath, "images");
+                    var imagepath = Path.Combine(folderpath, Homedetail.Image.FileName);
+                    Homedetail.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    
+                }
                 db.tbl_home.Add(Homedetail);
                 db.SaveChanges();
             }

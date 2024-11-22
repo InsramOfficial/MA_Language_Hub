@@ -8,17 +8,24 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
     public class IndexModel : PageModel
     {
         private readonly MALHdbcontext db;
-        private readonly IWebHostEnvironment env;
         public List<Home> Homedetails {  get; set; }
 
-        public IndexModel(MALHdbcontext db,IWebHostEnvironment env)
+        public IndexModel(MALHdbcontext db)
         {
             this.db = db;
-            this.env = env;
         }
         public void OnGet()
         {
             Homedetails = db.tbl_home.Take(3).ToList();
         }
-	}
+
+        public IActionResult OnGetDelete(int id)
+        {
+            Home deleteto =  db.tbl_home.Find(id);
+            db.tbl_home.Remove(deleteto);
+            db.SaveChanges();
+            return RedirectToPage("index");
+        }
+
+    }
 }
