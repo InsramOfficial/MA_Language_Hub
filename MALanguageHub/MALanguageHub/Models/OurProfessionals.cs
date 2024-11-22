@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace MALanguageHub.Models
 {
@@ -23,7 +24,6 @@ namespace MALanguageHub.Models
         [Display(Name = "Facebook")]
         public string FacebookLink { get; set; }
 
-        [Url(ErrorMessage = "Invalid URL format.")]
         [Display(Name = "WhatsApp")]
         public string WhatsAppLink { get; set; }
 
