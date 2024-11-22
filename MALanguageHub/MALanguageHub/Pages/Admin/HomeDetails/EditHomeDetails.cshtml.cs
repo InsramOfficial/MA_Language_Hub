@@ -16,13 +16,22 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
             this.db = db;
             this.env = env;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             Homedetail = db.tbl_home.Find(id);
+            return Page();
         }
         public IActionResult OnPost(Home Homedetail)
         {
-            if(!ModelState.IsValid)
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

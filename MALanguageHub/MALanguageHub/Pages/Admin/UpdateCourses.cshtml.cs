@@ -17,9 +17,14 @@ namespace MALanguageHub.Pages.Admin
             env = _env;
         }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             courses = db.tbl_courses.Find(id);
+            return Page();
         }
 
 		public IActionResult OnPost(Courses courses)

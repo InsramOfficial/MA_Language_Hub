@@ -16,14 +16,23 @@ namespace MALanguageHub.Pages
 			env = _env;
 		}
 
-		public void OnGet()
+		public IActionResult OnGet()
 		{
-			StudentReviews = db.tbl_studentreviews.ToList();
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            StudentReviews = db.tbl_studentreviews.ToList();
+			return Page();
 		}
 
 		public IActionResult OnGetDelete(int Id)
 		{
-			try
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            try
 			{
 				var ItemToDel = db.tbl_studentreviews.Find(Id);
 				if (ItemToDel != null)

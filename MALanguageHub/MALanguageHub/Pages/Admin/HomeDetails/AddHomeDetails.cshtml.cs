@@ -16,12 +16,20 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
             this.db = db;
             this.env = env;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            return Page();
         }
         public IActionResult OnPost(Home Homedetail)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

@@ -16,13 +16,22 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             this.db = db;
             this.env = env;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             professional = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
+            return Page();
         }
         public IActionResult OnPost(OurProfessionals professional)
         {
-            if(!ModelState.IsValid)
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

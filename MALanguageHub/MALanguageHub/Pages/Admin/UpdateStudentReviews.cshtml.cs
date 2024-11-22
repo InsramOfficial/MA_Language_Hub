@@ -18,12 +18,21 @@ namespace MALanguageHub.Pages.Admin
 
         }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             StudentReviews = db.tbl_studentreviews.Find(id);
+            return Page();
         }
         public IActionResult OnPost(StudentReviews StudentReviews)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

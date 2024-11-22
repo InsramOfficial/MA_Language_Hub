@@ -14,14 +14,23 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
 		{
 			this.db = db;
 		}
-		public void OnGet()
+		public IActionResult OnGet()
         {
-			professionals = db.tbl_ourprofessionals.ToList();
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            professionals = db.tbl_ourprofessionals.ToList();
+			return Page();
         }
 
 		public IActionResult OnGetDelete(int id) 
 		{
-			OurProfessionals deleteto = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            OurProfessionals deleteto = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
 			db.tbl_ourprofessionals.Remove(deleteto);
 			db.SaveChanges();
 			return RedirectToPage("index");

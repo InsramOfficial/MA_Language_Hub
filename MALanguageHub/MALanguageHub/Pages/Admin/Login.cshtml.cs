@@ -8,8 +8,8 @@ namespace MALanguageHub.Pages.Admin
     public class LoginModel : PageModel
     {
 
-        MALHdbcontext db;
-        IWebHostEnvironment env;
+        private readonly MALHdbcontext db;
+        private readonly IWebHostEnvironment env;
         [BindProperty]
         public Login Login { get; set; }
         public LoginModel(MALHdbcontext _db, IWebHostEnvironment _env)
@@ -17,9 +17,6 @@ namespace MALanguageHub.Pages.Admin
             db = _db;
             env = _env;
         }
-
-
-
         public IActionResult OnPost(Login login)
         {
             if (!ModelState.IsValid)
@@ -36,12 +33,13 @@ namespace MALanguageHub.Pages.Admin
                     TempData["ErrorMessage"] = "Invalid username or password.";
                     return Page();
                 }
-
-                HttpContext.Session.SetString("Username", user.Username);
-                HttpContext.Session.SetString("flag", "true");
-
-                TempData["SuccessMessage"] = "Login successful!";
-                return RedirectToPage("index");
+                else
+                {
+                    HttpContext.Session.SetString("FullName", user.FullName);
+                    HttpContext.Session.SetString("flag", "true");
+                    TempData["success"] = "Login successful!";
+                    return RedirectToPage("index");
+                }
             }
         }
 

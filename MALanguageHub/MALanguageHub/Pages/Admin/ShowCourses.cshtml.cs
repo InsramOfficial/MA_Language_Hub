@@ -17,13 +17,23 @@ namespace MALanguageHub.Pages.Admin
             env = _env;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-           courses=db.tbl_courses.ToList();
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            
+            courses =db.tbl_courses.ToList();
+            return Page();
         }
 
         public IActionResult OnGetDelete(int Id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             try
             {
                 var ItemToDel = db.tbl_courses.Find(Id);

@@ -18,12 +18,21 @@ namespace MALanguageHub.Pages.Admin
             env = _env;
 
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             Aboutus = db.tbl_aboutus.FirstOrDefault();
+            return Page();
         }
         public IActionResult OnPost(Aboutus Aboutus)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();

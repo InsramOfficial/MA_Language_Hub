@@ -14,13 +14,23 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         {
             this.db = db;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if(!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             Homedetails = db.tbl_home.Take(3).ToList();
+            return Page();
+
         }
 
         public IActionResult OnGetDelete(int id)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             Home deleteto =  db.tbl_home.Find(id);
             db.tbl_home.Remove(deleteto);
             db.SaveChanges();

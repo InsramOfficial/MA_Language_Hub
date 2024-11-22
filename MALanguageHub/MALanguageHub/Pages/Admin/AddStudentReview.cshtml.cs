@@ -17,8 +17,20 @@ namespace MALanguageHub.Pages
             env = _env;
 
         }
+        public IActionResult OnGet()
+        {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
+            return Page();
+        }
         public IActionResult OnPost(StudentReviews StudentReviews)
         {
+            if (!(HttpContext.Session.GetString("flag") == "true"))
+            {
+                return RedirectToPage("/Admin/Login");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
