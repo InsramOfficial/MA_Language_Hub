@@ -18,6 +18,7 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             UserName = HttpContext.Session.GetString("FullName");
@@ -28,17 +29,28 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                db.tbl_contactus.Add(contact);
-                db.SaveChanges();
-                return RedirectToPage("EditContactUs");
+                try
+                {
+                    db.tbl_contactus.Add(contact);
+                    db.SaveChanges();
+                    TempData["success"] = "Record Save Successfully";
+                    return RedirectToPage("EditContactUs");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Inserting Data";
+                    return Page();
+                }
             }
             
         }

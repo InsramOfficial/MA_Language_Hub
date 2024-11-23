@@ -10,6 +10,7 @@ namespace MALanguageHub.Pages.Admin
             if (HttpContext.Session.GetString("flag") == "true")
             {
                 HttpContext.Session.Clear();
+                TempData["success"] = "Logout Successfully!";
                 return RedirectToPage("/Admin/Login");
             }
             else

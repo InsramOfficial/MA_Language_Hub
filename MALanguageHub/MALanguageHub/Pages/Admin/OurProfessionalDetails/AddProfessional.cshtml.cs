@@ -34,25 +34,36 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             }
             if (!ModelState.IsValid)
 			{
-				return Page();
+                TempData["info"] = "Insert your data correctly";
+                return Page();
 			}
 			else
 			{
-				if(professional.Image == null)
-				{
-					professional.ImageName = null;
-				}
-				else
-				{
-					professional.ImageName = professional.Image.FileName;
-					var folderpath = Path.Combine(env.WebRootPath, "images");
-					var imagepath = Path.Combine(folderpath, professional.Image.FileName);
-					professional.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
-				}
-				db.tbl_ourprofessionals.Add(professional);
-				db.SaveChanges();
+                try
+                {
+                    if (professional.Image == null)
+                    {
+                        professional.ImageName = null;
+                    }
+                    else
+                    {
+                        professional.ImageName = professional.Image.FileName;
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var imagepath = Path.Combine(folderpath, professional.Image.FileName);
+                        professional.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    }
+                    db.tbl_ourprofessionals.Add(professional);
+                    db.SaveChanges();
+                    TempData["success"] = "Details Added Successfully";
+                    return RedirectToPage("index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Adding Details";
+                    return Page();
+                }
 			}
-			return RedirectToPage("index");
+			
 		}
     }
 }

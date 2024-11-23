@@ -36,23 +36,33 @@ namespace MALanguageHub.Pages.Admin
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                string ImageName = Aboutus.Image.FileName.ToString();
-                var folderpath = Path.Combine(env.WebRootPath, "images");
-                var ImageNamepath = Path.Combine(folderpath, ImageName);
-                Aboutus.Image.CopyTo(new FileStream(ImageNamepath, FileMode.Create));
+                try
+                {
+                    string ImageName = Aboutus.Image.FileName.ToString();
+                    var folderpath = Path.Combine(env.WebRootPath, "images");
+                    var ImageNamepath = Path.Combine(folderpath, ImageName);
+                    Aboutus.Image.CopyTo(new FileStream(ImageNamepath, FileMode.Create));
 
-                //FileStream fs = new FileStream(ImageNamepath, FileMode.Create);
-                //Aboutus.Image.CopyTo(fs);
-                //fs.Dispose();
+                    //FileStream fs = new FileStream(ImageNamepath, FileMode.Create);
+                    //Aboutus.Image.CopyTo(fs);
+                    //fs.Dispose();
 
-                Aboutus.ImageName = ImageName;
-                db.tbl_aboutus.Add(Aboutus);
-                db.SaveChanges();
-                return RedirectToPage("UpdateAboutUs");
+                    Aboutus.ImageName = ImageName;
+                    db.tbl_aboutus.Add(Aboutus);
+                    db.SaveChanges();
+                    TempData["success"] = "Details Added Successfully";
+                    return RedirectToPage("UpdateAboutUs");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Adding Details";
+                    return Page();
+                }
             }
           
         }

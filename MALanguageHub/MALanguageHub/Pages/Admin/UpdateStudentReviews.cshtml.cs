@@ -37,15 +37,25 @@ namespace MALanguageHub.Pages.Admin
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                db.tbl_studentreviews.Update(StudentReviews);
-                db.SaveChanges();
-                TempData["SuccessMessage"] = "Review Added Successfully";
+                try
+                {
+                    db.tbl_studentreviews.Update(StudentReviews);
+                    db.SaveChanges();
+                    TempData["success"] = "Review Updated Successfully";
+                    return RedirectToPage("ShowStudentReview");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Updating Review";
+                    return Page();
+                }
             }
-            return RedirectToPage("ShowStudentReview");
+            
         }
     }
 }

@@ -33,34 +33,41 @@ namespace MALanguageHub.Pages.Admin
         {
             if(!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                Login update = new();
-                update.Id = Login.Id;
-                update.Username = Login.Username;
-                update.Password = Login.Password;
-                update.FullName = Login.FullName;
+                try
+                {
+                    Login update = new();
+                    update.Id = Login.Id;
+                    update.Username = Login.Username;
+                    update.Password = Login.Password;
+                    update.FullName = Login.FullName;
 
-                if(Login.Image is null)
-                {
-                    update.ImageName = Login.ImageName;
+                    if (Login.Image is null)
+                    {
+                        update.ImageName = Login.ImageName;
+                    }
+                    else
+                    {
+                        update.ImageName = Login.Image.FileName;
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var imagepath = Path.Combine(folderpath, Login.Image.FileName);
+                        Login.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    }
+                    db.tbl_login.Update(update);
+                    db.SaveChanges();
+                    TempData["success"] = "Your Profile Save and Updated Successfully";
+                    return RedirectToPage("ShowProfile");
                 }
-                else
+                catch (Exception ex)
                 {
-                    update.ImageName = Login.Image.FileName;
-                    var folderpath = Path.Combine(env.WebRootPath, "images");
-                    var imagepath = Path.Combine(folderpath, Login.Image.FileName);
-                    Login.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    TempData["error"] = "Error While Updating Your Profile";
+                    return Page();
                 }
-                db.tbl_login.Update(update);
-                db.SaveChanges();
-            }
-            return RedirectToPage("ShowProfile");
+            }   
         }
-
-
-
     }
 }

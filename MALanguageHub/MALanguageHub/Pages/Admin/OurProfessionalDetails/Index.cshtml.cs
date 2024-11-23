@@ -32,10 +32,19 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
-            OurProfessionals deleteto = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
-			db.tbl_ourprofessionals.Remove(deleteto);
-			db.SaveChanges();
-			return RedirectToPage("index");
+            try
+            {
+                OurProfessionals deleteto = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
+                db.tbl_ourprofessionals.Remove(deleteto);
+                db.SaveChanges();
+                TempData["success"] = "Record Deleted Successfully";
+                return RedirectToPage("index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Error While Deleting Record";
+                return Page();
+            }
 		}
     }
 }

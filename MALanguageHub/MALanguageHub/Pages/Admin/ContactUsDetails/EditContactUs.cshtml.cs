@@ -18,6 +18,7 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             UserName = HttpContext.Session.GetString("FullName");
@@ -28,34 +29,28 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             if(!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                //db.tbl_contactus.Update(contact);
-                //db.SaveChanges();
-                // Attempt to update the contact
-                db.tbl_contactus.Update(contact);
-                int rowsAffected = db.SaveChanges(); // Capture the number of affected rows
-
-                // Check if any rows were updated
-                if (rowsAffected > 0)
+                try
                 {
-                    // Set success message in TempData
-                    TempData["SuccessMessage"] = "Contact information updated successfully!";
+                    db.tbl_contactus.Update(contact);
+                    db.SaveChanges();
+                    TempData["success"] = "Information updated successfully!";
                     return RedirectToPage("EditContactUs");
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Optionally set an error message if no rows were updated
-                    TempData["ErrorMessage"] = "No changes were made or the record was not found.";
+                    TempData["error"] = "No changes were made or the record was not found.";
                     return RedirectToPage("EditContactUs");
                 }
-                return RedirectToPage("EditContactUs");
             }
 
         }

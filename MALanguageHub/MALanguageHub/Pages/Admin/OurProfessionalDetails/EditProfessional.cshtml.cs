@@ -35,35 +35,46 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                OurProfessionals update = new();
-                update.Id = professional.Id;
-                update.Title = professional.Title;
-                update.Description = professional.Description;
-                update.FacebookLink = professional.FacebookLink;
-                update.InstagramLink = professional.InstagramLink;
-                update.LinkedInLink = professional.LinkedInLink;
-                update.WhatsAppLink = professional.WhatsAppLink;
-
-                if(professional.Image == null)
+                try
                 {
-                    update.ImageName = professional.ImageName;
+                    OurProfessionals update = new();
+                    update.Id = professional.Id;
+                    update.Title = professional.Title;
+                    update.Description = professional.Description;
+                    update.FacebookLink = professional.FacebookLink;
+                    update.InstagramLink = professional.InstagramLink;
+                    update.LinkedInLink = professional.LinkedInLink;
+                    update.WhatsAppLink = professional.WhatsAppLink;
 
+                    if (professional.Image == null)
+                    {
+                        update.ImageName = professional.ImageName;
+
+                    }
+                    else
+                    {
+                        update.ImageName = professional.Image.FileName;
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var imagepath = Path.Combine(folderpath, professional.Image.FileName);
+                        professional.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    }
+                    db.tbl_ourprofessionals.Update(update);
+                    db.SaveChanges();
+                    TempData["success"] = "Details Updated Successfully";
+                    return RedirectToPage("index");
                 }
-                else
+                catch (Exception ex)
                 {
-                    update.ImageName = professional.Image.FileName;
-                    var folderpath = Path.Combine(env.WebRootPath, "images");
-                    var imagepath = Path.Combine(folderpath, professional.Image.FileName);
-                    professional.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                    TempData["error"] = "Error While Updated Details";
+                    return Page();
                 }
-                db.tbl_ourprofessionals.Update(update);
-                db.SaveChanges();
             }
-            return RedirectToPage("index");
+            
         }
     }
 }

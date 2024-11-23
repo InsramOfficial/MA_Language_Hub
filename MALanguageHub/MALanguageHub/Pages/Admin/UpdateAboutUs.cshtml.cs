@@ -37,30 +37,40 @@ namespace MALanguageHub.Pages.Admin
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                Aboutus update = new();
-                update.Id = Aboutus.Id;
-                update.Title = Aboutus.Title;
-                update.Description = Aboutus.Description;
-
-                if (!(Aboutus.Image != null))
+                try
                 {
-                    update.ImageName = Aboutus.ImageName;
-                }
-                else
-                {
-                    var folderpath = Path.Combine(env.WebRootPath, "images");
-                    var imagepath = Path.Combine(folderpath, Aboutus.Image.FileName);
-                    Aboutus.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
-                    update.ImageName = Aboutus.Image.FileName;
-                }
+                    Aboutus update = new();
+                    update.Id = Aboutus.Id;
+                    update.Title = Aboutus.Title;
+                    update.Description = Aboutus.Description;
 
-                db.tbl_aboutus.Update(update);
-                db.SaveChanges();
-                return Page();
+                    if (!(Aboutus.Image != null))
+                    {
+                        update.ImageName = Aboutus.ImageName;
+                    }
+                    else
+                    {
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var imagepath = Path.Combine(folderpath, Aboutus.Image.FileName);
+                        Aboutus.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+                        update.ImageName = Aboutus.Image.FileName;
+                    }
+
+                    db.tbl_aboutus.Update(update);
+                    db.SaveChanges();
+                    TempData["success"] = "Details Updated Successfully";
+                    return Page();
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Updating Details";
+                    return Page();
+                }
             }
 
             //try

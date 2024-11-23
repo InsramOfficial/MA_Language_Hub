@@ -21,6 +21,7 @@ namespace MALanguageHub.Pages.Admin
         {
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
 
@@ -30,15 +31,15 @@ namespace MALanguageHub.Pages.Admin
 
                 if (user == null)
                 {
-                    TempData["ErrorMessage"] = "Invalid username or password.";
-                    return Page();
+                    TempData["error"] = "Invalid username or password.";
+                    return RedirectToPage("/Admin/Login");
                 }
                 else
                 {
                     HttpContext.Session.SetString("FullName", user.FullName);
                     HttpContext.Session.SetString("flag", "true");
                     TempData["success"] = "Login successful!";
-                    return RedirectToPage("index");
+                    return RedirectToPage("/Admin/index");
                 }
             }
         }

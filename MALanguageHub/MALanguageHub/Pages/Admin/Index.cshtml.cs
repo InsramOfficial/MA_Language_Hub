@@ -34,8 +34,6 @@ namespace MALanguageHub.Pages.Admin
             ViewData["CoursesCount"] = coursesCount;
             ViewData["ProfessionalsCount"] = professionalsCount;
             ViewData["StudentReviewsCount"] = studentReviewsCount;
-
-
             UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }

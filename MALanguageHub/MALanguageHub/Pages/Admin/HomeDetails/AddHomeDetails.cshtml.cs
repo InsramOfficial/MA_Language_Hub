@@ -2,6 +2,7 @@ using MALanguageHub.Data;
 using MALanguageHub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MALanguageHub.Pages.Admin.HomeDetails
 {
@@ -21,6 +22,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             UserName = HttpContext.Session.GetString("FullName");
@@ -30,26 +32,37 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                if (Homedetail.Image != null)
+                try
                 {
-                    Homedetail.ImageName = Homedetail.Image.FileName;
-                    var folderpath = Path.Combine(env.WebRootPath, "images");
-                    var imagepath = Path.Combine(folderpath, Homedetail.Image.FileName);
-                    Homedetail.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
-                    
+                    if (Homedetail.Image != null)
+                    {
+                        Homedetail.ImageName = Homedetail.Image.FileName;
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var imagepath = Path.Combine(folderpath, Homedetail.Image.FileName);
+                        Homedetail.Image.CopyTo(new FileStream(imagepath, FileMode.Create));
+
+                    }
+                    db.tbl_home.Add(Homedetail);
+                    db.SaveChanges();
+                    TempData["success"] = "Home Detail Added Successfully";
+                    return RedirectToPage("index");
                 }
-                db.tbl_home.Add(Homedetail);
-                db.SaveChanges();
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Adding Home Detail";
+                    return Page();
+                }
             }
-            return RedirectToPage("index");
         }
     }
 }

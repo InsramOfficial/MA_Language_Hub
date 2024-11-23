@@ -41,19 +41,20 @@ namespace MALanguageHub.Pages
 				{
 					db.tbl_studentreviews.Remove(ItemToDel);
 					db.SaveChanges();
-					TempData["DeleteMessage"] = "The Review has been successfully deleted.";
-				}
+					TempData["success"] = "The Review has been successfully deleted.";
+                    return RedirectToPage("ShowStudentReview");
+                }
 				else
 				{
-					TempData["ErrorMessage"] = "Course not found.";
+					TempData["error"] = "Course not found.";
+					return Page();
 				}
 			}
 			catch (Exception ex)
 			{
-				TempData["ErrorMessage"] = "An error occurred while deleting the course.";
+				TempData["error"] = "An error occurred while deleting the course.";
+				return Page();
 			}
-
-			return RedirectToPage("ShowStudentReview");
 		}
 
 	}

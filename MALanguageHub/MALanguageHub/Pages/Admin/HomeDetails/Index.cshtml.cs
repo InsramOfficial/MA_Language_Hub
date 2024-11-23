@@ -19,6 +19,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         {
             if(!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
             UserName = HttpContext.Session.GetString("FullName");
@@ -31,12 +32,22 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
         {
             if (!(HttpContext.Session.GetString("flag") == "true"))
             {
+                TempData["warning"] = "Please Login Before Access This";
                 return RedirectToPage("/Admin/Login");
             }
-            Home deleteto =  db.tbl_home.Find(id);
-            db.tbl_home.Remove(deleteto);
-            db.SaveChanges();
-            return RedirectToPage("index");
+            try
+            {
+                Home deleteto = db.tbl_home.Find(id);
+                db.tbl_home.Remove(deleteto);
+                db.SaveChanges();
+                TempData["success"] = "Home Detail Deleted Successfully";
+                return RedirectToPage("index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Error While Deleting Record";
+                return Page();
+            }
         }
 
     }

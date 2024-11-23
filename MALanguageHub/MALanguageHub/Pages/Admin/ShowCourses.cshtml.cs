@@ -44,19 +44,20 @@ namespace MALanguageHub.Pages.Admin
                 {
                     db.tbl_courses.Remove(ItemToDel);
                     db.SaveChanges();
-                    TempData["DeleteMessage"] = "The course has been successfully deleted.";  
+                    TempData["success"] = "Course Deleted Successfully";
+                    return RedirectToPage("ShowCourses");
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Course not found.";  
+                    TempData["error"] = "Course not found.";  
+                    return Page();
                 }
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "An error occurred while deleting the course.";
+                TempData["error"] = "An error occurred while deleting the course.";
+                return Page();
             }
-
-            return RedirectToPage("ShowCourses");
         }
 
     }

@@ -17,19 +17,33 @@ namespace MALanguageHub.Pages
             env = _env;
 
         }
+        public void OnGet()
+        {
+
+        }
         public IActionResult OnPost(StudentReviews StudentReviews)
         {
             if (!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                db.tbl_studentreviews.Add(StudentReviews);
-                db.SaveChanges();
-                TempData["SuccessMessage"] = "Thanks For your review";
+                try
+                {
+                    db.tbl_studentreviews.Add(StudentReviews);
+                    db.SaveChanges();
+                    TempData["success"] = "Thank You For Your Review";
+                    return RedirectToPage("StudentReview");
+                }
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Submitting Review";
+                    return Page();
+                }
             }
-            return RedirectToPage(nameof(StudentReviews));
+            
         }
     }
 }

@@ -34,20 +34,31 @@ namespace MALanguageHub.Pages.Admin
         {
             if(!ModelState.IsValid)
             {
+                TempData["info"] = "Insert your data correctly";
                 return Page();
             }
             else
             {
-                if(courses.Image is not null)
+                try
                 {
-                    courses.ImageName = courses.Image.FileName;
-                    var folderpath = Path.Combine(env.WebRootPath, "images");
-                    var ImageNamepath = Path.Combine(folderpath, courses.Image.FileName);
-                    courses.Image.CopyTo(new FileStream(ImageNamepath, FileMode.Create));
+                    if (courses.Image is not null)
+                    {
+                        courses.ImageName = courses.Image.FileName;
+                        var folderpath = Path.Combine(env.WebRootPath, "images");
+                        var ImageNamepath = Path.Combine(folderpath, courses.Image.FileName);
+                        courses.Image.CopyTo(new FileStream(ImageNamepath, FileMode.Create));
+                    }
+                    db.tbl_courses.Add(courses);
+                    db.SaveChanges();
+                    TempData["success"] = "Details Added Successfully";
+                    return RedirectToPage("ShowCourses");
                 }
-                db.tbl_courses.Add(courses);
-                db.SaveChanges();
-                return RedirectToPage("ShowCourses");
+                catch (Exception ex)
+                {
+                    TempData["error"] = "Error While Adding Details";
+                    return Page();
+                }
+                
             }
             //string ImageName = courses.Image.FileName.ToString();
             //var folderpath = Path.Combine(env.WebRootPath, "images");

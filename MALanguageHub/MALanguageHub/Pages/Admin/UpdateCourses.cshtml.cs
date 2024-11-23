@@ -36,7 +36,8 @@ namespace MALanguageHub.Pages.Admin
 		{
 			if(!ModelState.IsValid)
 			{
-				return Page();
+                TempData["info"] = "Insert your data correctly";
+                return Page();
 			}
 			else
 			{
@@ -63,12 +64,13 @@ namespace MALanguageHub.Pages.Admin
                     }
 					db.tbl_courses.Update(update);
 					db.SaveChanges();
+					TempData["success"] = "Course Details Updated Successfully";
 					return RedirectToPage("ShowCourses");
 
 				}
 				catch(Exception ex)
 				{
-					TempData["error"] = "There is error while processing";
+					TempData["error"] = "Error While Updating Details";
 					return Page();
 				}
 			}

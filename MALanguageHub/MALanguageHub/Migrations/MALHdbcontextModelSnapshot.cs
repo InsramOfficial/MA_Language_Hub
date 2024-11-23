@@ -45,6 +45,14 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_aboutus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Software Engineer",
+                            Title = "Software"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.Contactus", b =>
@@ -90,6 +98,21 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_contactus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address1 = "Kotli Azad Kashmir",
+                            Address2 = "Islamabad Pakistan",
+                            EmailAddress1 = "info@gmail.com",
+                            EmailAddress2 = "contact@malanguagehub.com",
+                            Facebook = "https://www.facebook.com/muhammad.naseer039",
+                            Instagram = "https://www.facebook.com/muhammad.naseer039",
+                            PhoneNumber = "923425464039",
+                            TikTok = "https://www.facebook.com/muhammad.naseer039",
+                            WhatsappNumber = "923425464039"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.Courses", b =>
@@ -130,6 +153,28 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AllocatedTeacher = 1,
+                            Description = "Description for Course 1",
+                            Duration = "2 Month",
+                            StartingDate = new DateTime(2024, 11, 24, 0, 57, 20, 532, DateTimeKind.Local).AddTicks(4122),
+                            Status = "Available",
+                            Title = "Course 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AllocatedTeacher = 1,
+                            Description = "Description for Course 2",
+                            Duration = "2 Month",
+                            StartingDate = new DateTime(2024, 11, 24, 0, 57, 20, 532, DateTimeKind.Local).AddTicks(4133),
+                            Status = "Available",
+                            Title = "Course 2"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.Home", b =>
@@ -156,6 +201,20 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_home");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "I am Software Engineer",
+                            Title = "Software Engineer"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "I am Civil Engineer",
+                            Title = "Civil Engineer"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.Login", b =>
@@ -186,6 +245,15 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_login");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FullName = "Muhammad Naseer",
+                            Password = "admin",
+                            Username = "admin"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.OurProfessionals", b =>
@@ -228,6 +296,48 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_ourprofessionals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "I am a BS Computer Science student",
+                            FacebookLink = "https://www.facebook.com/muhammad.naseer039",
+                            InstagramLink = "https://www.facebook.com/muhammad.naseer039",
+                            LinkedInLink = "https://www.facebook.com/muhammad.naseer039",
+                            Title = "Muhammad Naseer",
+                            WhatsAppLink = "https://www.facebook.com/muhammad.naseer039"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "I am a BS Information student",
+                            FacebookLink = "https://www.facebook.com/muhammad.naseer039",
+                            InstagramLink = "https://www.facebook.com/muhammad.naseer039",
+                            LinkedInLink = "https://www.facebook.com/muhammad.naseer039",
+                            Title = "Muhammad Insram",
+                            WhatsAppLink = "https://www.facebook.com/muhammad.naseer039"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "I am a BS Mathematics student",
+                            FacebookLink = "https://www.facebook.com/muhammad.naseer039",
+                            InstagramLink = "https://www.facebook.com/muhammad.naseer039",
+                            LinkedInLink = "https://www.facebook.com/muhammad.naseer039",
+                            Title = "Muhammad Sultan",
+                            WhatsAppLink = "https://www.facebook.com/muhammad.naseer039"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "I am a BS English student",
+                            FacebookLink = "https://www.facebook.com/muhammad.naseer039",
+                            InstagramLink = "https://www.facebook.com/muhammad.naseer039",
+                            LinkedInLink = "https://www.facebook.com/muhammad.naseer039",
+                            Title = "Muhammad Ali",
+                            WhatsAppLink = "https://www.facebook.com/muhammad.naseer039"
+                        });
                 });
 
             modelBuilder.Entity("MALanguageHub.Models.StudentReviews", b =>
@@ -256,6 +366,36 @@ namespace MALanguageHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_studentreviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Designation = "Student",
+                            Name = "Insram",
+                            Review = "Great learning experience!"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Designation = "Student",
+                            Name = "Naseer",
+                            Review = "Great learning experience!"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Designation = "Student",
+                            Name = "Sultan",
+                            Review = "Great learning experience!"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Designation = "Student",
+                            Name = "Ali",
+                            Review = "Great learning experience!"
+                        });
                 });
 #pragma warning restore 612, 618
         }
