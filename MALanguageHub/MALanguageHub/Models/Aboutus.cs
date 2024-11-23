@@ -12,7 +12,7 @@ namespace MALanguageHub.Models
         public string Title { get; set; }
         [Required(ErrorMessage = "Please Enter Description")]
         [Display(Name = "Description")]
-        [MaxLength(120,ErrorMessage = "Description cannot be more than 120 characters")]
+        [MaxLength(500,ErrorMessage = "Description cannot be more than 500 characters")]
         public string Description { get; set; }
         [Display(Name = "Image")]
         public string? ImageName { get; set; }

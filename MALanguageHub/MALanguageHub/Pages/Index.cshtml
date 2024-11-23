@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +78,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-phone"></i> +65 2244 1100</a></li>
+                    <li><a href="https://wa.me/@Model.Contact.WhatsappNumber" target="_blank"><i class="fa fa-phone"></i>@Model.Contact.WhatsappNumber</a></li>
                 </ul>
             </div>
 
@@ -165,10 +164,9 @@
                         <figure>
                            
                             <figcaption>
-                                <h3>Professional Trainers</h3>
+                                <h3>@Model.Aboutus.Title</h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ipsa
-                                    voluptatibus.
+                                    @Model.Aboutus.Description
                                 </p>
                             </figcaption>
                         </figure>
@@ -179,7 +177,7 @@
 
                 <div class="col-md-offset-1 m-5 col-md-4 col-sm-12">
                     <div class="circle-container">
-                        <img src="https://th.bing.com/th/id/R.d0fa9ba1ff2b373e5ce443f1b21a3f67?rik=s7AkFJMbIYaOfA&riu=http%3a%2f%2fwww.aspectsystems.ie%2fwp-content%2fuploads%2f2017%2f05%2fInstitute18.jpg&ehk=tO8yv%2fT5q%2fwM9BRXX7kWdi7OvnSDe7yUcg9FVKb0gF8%3d&risl=&pid=ImgRaw&r=0"
+                        <img src="~/images/@Model.Aboutus.ImageName"
                              alt="Image">
                     </div>
                 </div>
@@ -265,12 +263,18 @@
                                         </div>
 
                                         <div class="courses-info">
-                                            <div class="courses-author">
-                                                <img src="~/images/@courses.ImageName" class="custom-img-responsive" alt="">
-                                                <span>@courses.AllocatedTeacher</span>
-                                            </div>
+                                            @foreach(var professional in Model.ourProfessionals)
+                                            {
+                                                if(courses.AllocatedTeacher == professional.Id)
+                                                {
+                                                    <div class="courses-author">
+                                                        <img src="~/images/@professional.ImageName" class="custom-img-responsive" alt="">
+                                                        <span>@professional.Title</span>
+                                                    </div>
+                                                }
+                                            }
                                             <div class="courses-price">
-                                                <a href="#"><span>@courses.Status</span></a>
+                                                <span>@courses.Status</span>
                                             </div>
                                         </div>
                                     </div>
@@ -306,6 +310,7 @@
                                         <h4>@reviews.Name</h4>
                                         <span>@reviews.Designation</span>
                                     </div>
+                                    <small style="display:flex; flex-direction:row;">Review</small>
                                     <p>
                                         @reviews.Review
                                     </p>
@@ -334,14 +339,14 @@
                     </div>
                     <div class="contact-info bg-light  rounded ">
                         <h3 class="mb-5" ></h3>
-                        <p><i class="bi bi-geo-alt-fill text-primary "></i><strong>Address:</strong> University of Kotli, Azad Jammu & Kashmir</p>
+                        <p><i class="bi bi-geo-alt-fill text-primary "></i><strong>Address: </strong>@Model.Contact.Address1</p>
                         <p>
                             <i class="bi bi-envelope-fill text-primary "></i><strong>Email:</strong>
-                            <a href="mailto:info@universitykotli.com" class="text-decoration-none text-dark">info@universitykotli.com</a>
+                            <a href="mailto:info@universitykotli.com" class="text-decoration-none text-dark">@Model.Contact.EmailAddress1</a>
                         </p>
                         <p>
                             <i class="bi bi-telephone-fill text-primary me-2"></i><strong>Phone:</strong>
-                            <a href="tel:+1234567890" class="text-decoration-none text-dark">+123 456 7890</a>
+                            <a href="tel:+1234567890" class="text-decoration-none text-dark">@Model.Contact.PhoneNumber</a>
                         </p>
                         <p><i class="bi bi-clock-fill text-primary me-2"></i><strong>Hours:</strong> Mon - Fri: 9:00 AM - 5:00 PM</p>
                     </div>
@@ -371,22 +376,33 @@
                             <h2>Headquarter</h2>
                         </div>
                         <address>
-                            <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                            <p>@Model.Contact.Address1</p>
                         </address>
+                        @if(Model.Contact.Address2 != null)
+                        {
+                            <div class="section-title">
+                            <h2>Second Address</h2>
+                        </div>
+                        <address>
+                            <p>@Model.Contact.Address2</p>
+                        </address>
+                        }
 
                         <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
+                            <li><a href="@Model.Contact.Facebook" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                            <li><a href="@Model.Contact.TikTok"><i class="fa-brands fa-tiktok"></i></a></li>
+                            <li><a href="@Model.Contact.Instagram" class="fa fa-instagram"></a></li>
                         </ul>
 
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2018 MalanguageHub</p>
+                            <p>Copyright &copy; 2024 MA Language Hub</p>
                             <p>
-                                Design: <a rel="nofollow" href="http://templatemo.com" title="html5 templates"
-                                           target="_parent">Template Mo</a>
+                                Design: <a rel="nofollow" href="https://github.com/insramofficial" title="html5 templates"
+                                           target="_parent">Insram ul Haq</a>
+                                        <a rel="nofollow" href="https://github.com/MuhammadNaseer039" title="html5 templates"
+                                           target="_parent">Muhammad Naseer</a>
                             </p>
-                            <p>Distribution: <a href="https://themewagon.com/">ThemeWagon</a></p>
+                            <p>Distribution: Muhammad Naseer & Insram ul Haq</p>
                         </div>
                     </div>
                 </div>
@@ -397,8 +413,9 @@
                             <h2>Contact Info</h2>
                         </div>
                         <address>
-                            <p>+65 2244 1100, +66 1800 1100</p>
-                            <p><a href="mailto:youremail.com">hello@malanguagehub.com</a></p>
+                            <p>@Model.Contact.WhatsappNumber, @Model.Contact.PhoneNumber</p>
+                            <p><a href="mailto:@Model.Contact.EmailAddress1">@Model.Contact.EmailAddress1</a></p>
+                            <p><a href="mailto:@Model.Contact.EmailAddress2">@Model.Contact.EmailAddress2</a></p>
                         </address>
 
                         <div class="footer_menu">
