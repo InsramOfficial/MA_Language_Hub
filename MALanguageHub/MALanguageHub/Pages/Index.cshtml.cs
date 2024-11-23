@@ -1,19 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MALanguageHub.Data;
+using MALanguageHub.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MALanguageHub.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly MALHdbcontext db;
+        public Aboutus Aboutus { get; set; }
+        public List<Home> Home { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public List<Courses> Courses { get; set; }
+        public List<OurProfessionals> ourProfessionals { get; set; }
+        public List<StudentReviews> StudentReviews { get; set; }
+
+
+        public IndexModel(MALHdbcontext _db)
         {
-            _logger = logger;
+            db = _db;
         }
-
         public void OnGet()
         {
+            Aboutus = db.tbl_aboutus.FirstOrDefault();
+            Home = db.tbl_home.Take(3).ToList();
+            Courses = db.tbl_courses.ToList();
+            ourProfessionals = db.tbl_ourprofessionals.ToList();
+            StudentReviews = db.tbl_studentreviews.ToList();
 
         }
     }
