@@ -11,6 +11,7 @@ namespace MALanguageHub.Pages.Admin
         MALHdbcontext db;
         IWebHostEnvironment env;
         public List<Courses> courses { get; set; }
+        
         public string UserName;
         public ShowCoursesModel(MALHdbcontext _db, IWebHostEnvironment _env)
         {
@@ -38,7 +39,7 @@ namespace MALanguageHub.Pages.Admin
             }
             try
             {
-                var ItemToDel = db.tbl_courses.Find(Id);
+                var ItemToDel = db.tbl_courses.Where(x => x.Id == Id).FirstOrDefault();
                 if (ItemToDel != null)
                 {
                     db.tbl_courses.Remove(ItemToDel);
@@ -52,7 +53,7 @@ namespace MALanguageHub.Pages.Admin
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "An error occurred while deleting the course.";  
+                TempData["ErrorMessage"] = "An error occurred while deleting the course.";
             }
 
             return RedirectToPage("ShowCourses");

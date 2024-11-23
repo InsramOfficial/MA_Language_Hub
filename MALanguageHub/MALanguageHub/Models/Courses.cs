@@ -27,22 +27,21 @@ namespace MALanguageHub.Models
 
         [Required(ErrorMessage = "Duration is required.")]
         [Display(Name = "Duration")]
-        public string Duration { get; set; }
+        public string? Duration { get; set; }
 
         [Required(ErrorMessage = "Allocated teacher is required.")]
         [Display(Name = "Allocated Teacher")]
-        [MaxLength(200, ErrorMessage = "Teacher name cannot exceed 200 characters.")]
-        public string AllocatedTeacher { get; set; }
+        public int AllocatedTeacher { get; set; }
 
         [Required(ErrorMessage = "Status is required.")]
         [Display(Name = "Status")]
         [RegularExpression("(Available|NotAvailable)", ErrorMessage = "Status must be either 'Available' or 'NotAvailable'.")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
         [Display(Name = "Image")]
-        public string ImageName { get; set; }
+        public string? ImageName { get; set; }
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
     }
 }

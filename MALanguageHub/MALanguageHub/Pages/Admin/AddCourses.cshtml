@@ -28,8 +28,14 @@
                     <span asp-validation-for="courses.StartingDate" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Allocated Teacher</label>
-                    <input class="form-control" asp-for="courses.AllocatedTeacher" placeholder="Enter teacher name">
+                    <label asp-for="courses.AllocatedTeacher" for="status" class="form-label"></label>
+                    <select asp-for="courses.AllocatedTeacher" id="status" class="form-control" aria-label="Select professional">
+                        <option value="" selected>-----Select-----</option>
+                        @foreach(var professional in Model.professionals)
+                        {
+                            <option value="@professional.Id">@professional.Title</option>
+                        }
+                    </select>
                     <span asp-validation-for="courses.AllocatedTeacher" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
