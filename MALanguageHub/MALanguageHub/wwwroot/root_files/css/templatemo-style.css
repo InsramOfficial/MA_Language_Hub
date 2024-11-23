@@ -401,70 +401,66 @@ section {
 /*---------------------------------------
       HOME  & SLIDER            
   -----------------------------------------*/
-
 #home {
-  padding: 0;
+    padding: 0;
+    color: #FFFFFF; /* This sets the default text color to white */
 }
 
-#home h1 {
-  color: #ffffff;
-}
-
-#home h3 {
-  color: #f9f9f9;
-  font-size: 16px;
-  font-weight: 300;
-  margin: 0;
-  padding: 5px 0 40px 0;
-}
-
-@media (min-width: 768px) {
-  .home-slider .col-md-6 {
-    padding-left: 0;
-  }
-}
-
-.home-slider .caption {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: left;
-  background-color: rgba(20, 20, 20, 0.2);
-  height: 100%;
-  color: #fff;
-  cursor: e-resize;
-}
+    #home h3 {
+        font-size: 16px;
+        font-weight: 300;
+        margin: 0;
+        padding: 5px 0 40px 0;
+        color: #FFFFFF; /* Ensuring h3 text is white */
+    }
 
 .home-slider .item {
-  background-repeat: no-repeat;
-  background-attachment: local;
-  background-size: cover;
-  height: 650px;
+    position: relative;
+    height: 650px;
+    overflow: hidden;
 }
 
-.caption h3 a {
-  color: #FFF;
+    .home-slider .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.home-slider .caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    background-color: rgba(20, 20, 20, 0.2);
+    color: #FFFFFF; /* Set caption text color to white */
+    cursor: e-resize;
 }
 
-.caption h3 a:hover {
-  color: #FF3;
+.caption h3 a ,h1{
+    color: #FFFFFF; /* Link color in caption set to white */
 }
 
-.home-slider .item-first {
-  background-image: url(../images/slider-image1.jpg);
-  background-position: center;
+    .caption h3 a:hover {
+        color: #FF3; /* Hover color remains unchanged */
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-slider .item {
+        height: 450px;
+    }
 }
 
-.home-slider .item-second {
-  background-image: url(../images/slider-image2.jpg);
+@media (max-width: 480px) {
+    .home-slider .item {
+        height: 350px;
+    }
 }
-
-.home-slider .item-third {
-  background-image: url(../images/slider-image3.jpg);
-}
-
-
-
 /*---------------------------------------
       FEATURE              
   -----------------------------------------*/
