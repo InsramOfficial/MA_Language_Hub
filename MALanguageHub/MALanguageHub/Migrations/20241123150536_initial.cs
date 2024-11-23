@@ -16,12 +16,33 @@ namespace MALanguageHub.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tbl_aboutus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_contactus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Address1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Address2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailAddress1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmailAddress2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WhatsappNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Facebook = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Instagram = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TikTok = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_contactus", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,6 +134,9 @@ namespace MALanguageHub.Migrations
         {
             migrationBuilder.DropTable(
                 name: "tbl_aboutus");
+
+            migrationBuilder.DropTable(
+                name: "tbl_contactus");
 
             migrationBuilder.DropTable(
                 name: "tbl_courses");

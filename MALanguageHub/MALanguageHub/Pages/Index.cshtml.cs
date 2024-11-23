@@ -21,16 +21,15 @@ namespace MALanguageHub.Pages
         {
             db = _db;
         }
-        public IActionResult OnGet()
+        public void OnGet()
         {
             
             Home = db.tbl_home.Take(3).ToList();
             Courses = db.tbl_courses.ToList();
             ourProfessionals = db.tbl_ourprofessionals.ToList();
             StudentReviews = db.tbl_studentreviews.ToList();
-            Contact = db.tbl_contactus.First();
-            Aboutus = db.tbl_aboutus.First();
-            return Page();
+            Contact = db.tbl_contactus.FirstOrDefault();
+            Aboutus = db.tbl_aboutus.FirstOrDefault();
 
         }
     }
