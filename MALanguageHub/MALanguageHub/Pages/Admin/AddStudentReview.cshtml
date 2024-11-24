@@ -2,7 +2,10 @@
 @model AddStudentReviewModel
 @{
     var successMessage = TempData["SuccessMessage"] as string;
+    ViewData["Title"] = "MALanguageHub | AddReview";
+
 }
+<title>@ViewData["Title"]</title>
 <div class="container">
     <form method="post" enctype="multipart/form-data">
         <div class="row justify-content-center">

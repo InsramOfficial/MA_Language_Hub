@@ -2,7 +2,11 @@
 @model MALanguageHub.Pages.Admin.LoginModel
 @{
     Layout = null;
+
+    ViewData["Title"] = "MALanguageHub | Login";
     }
+
+<title>@ViewData["Title"]</title>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +74,10 @@
 
                                     </form>
                                     <hr>
-                                   
+                                <div class="text-center">
+                                        <a class="btn btn-primary btn-sm" href="/Index">Go to home Page</a>
+
+
                                 </div>
                             </div>
                         </div>
