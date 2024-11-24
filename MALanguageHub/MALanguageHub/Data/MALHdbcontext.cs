@@ -16,6 +16,7 @@ namespace MALanguageHub.Data
         public DbSet<OurProfessionals> tbl_ourprofessionals { get; set; }
         public DbSet<StudentReviews> tbl_studentreviews { get; set; }
         public DbSet<Contactus> tbl_contactus { get; set; }
+        public DbSet<Settings> tbl_settings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,9 @@ namespace MALanguageHub.Data
             modelBuilder.Entity<Contactus>().HasData(
                 new Contactus { Id = 1, Address1 = "Kotli Azad Kashmir", Address2 = "Islamabad Pakistan", EmailAddress1 = "info@gmail.com", EmailAddress2 = "contact@malanguagehub.com",PhoneNumber = "923425464039",WhatsappNumber = "923425464039", Facebook = "https://www.facebook.com/muhammad.naseer039", TikTok = "https://www.facebook.com/muhammad.naseer039", Instagram = "https://www.facebook.com/muhammad.naseer039" }
             );
+            modelBuilder.Entity<Settings>().HasData(
+                new Settings {Id = 1,Name = "MALanguageHub" }
+                );
         }
     }
 }

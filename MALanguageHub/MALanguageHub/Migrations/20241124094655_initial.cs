@@ -115,6 +115,20 @@ namespace MALanguageHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tbl_settings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LogoFavicon = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_settings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tbl_studentreviews",
                 columns: table => new
                 {
@@ -127,6 +141,66 @@ namespace MALanguageHub.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tbl_studentreviews", x => x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: "tbl_aboutus",
+                columns: new[] { "Id", "Description", "ImageName", "Title" },
+                values: new object[] { 1, "Software Engineer", null, "Software" });
+
+            migrationBuilder.InsertData(
+                table: "tbl_contactus",
+                columns: new[] { "Id", "Address1", "Address2", "EmailAddress1", "EmailAddress2", "Facebook", "Instagram", "PhoneNumber", "TikTok", "WhatsappNumber" },
+                values: new object[] { 1, "Kotli Azad Kashmir", "Islamabad Pakistan", "info@gmail.com", "contact@malanguagehub.com", "https://www.facebook.com/muhammad.naseer039", "https://www.facebook.com/muhammad.naseer039", "923425464039", "https://www.facebook.com/muhammad.naseer039", "923425464039" });
+
+            migrationBuilder.InsertData(
+                table: "tbl_courses",
+                columns: new[] { "Id", "AllocatedTeacher", "Description", "Duration", "ImageName", "StartingDate", "Status", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, "Description for Course 1", "2 Month", null, new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5678), "Available", "Course 1" },
+                    { 2, 1, "Description for Course 2", "2 Month", null, new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5693), "Available", "Course 2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "tbl_home",
+                columns: new[] { "Id", "Description", "ImageName", "Title" },
+                values: new object[,]
+                {
+                    { 1, "I am Software Engineer", null, "Software Engineer" },
+                    { 2, "I am Civil Engineer", null, "Civil Engineer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "tbl_login",
+                columns: new[] { "Id", "FullName", "ImageName", "Password", "Username" },
+                values: new object[] { 1, "Muhammad Naseer", null, "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "tbl_ourprofessionals",
+                columns: new[] { "Id", "Description", "FacebookLink", "ImageName", "InstagramLink", "LinkedInLink", "Title", "WhatsAppLink" },
+                values: new object[,]
+                {
+                    { 1, "I am a BS Computer Science student", "https://www.facebook.com/muhammad.naseer039", null, "https://www.facebook.com/muhammad.naseer039", "https://www.facebook.com/muhammad.naseer039", "Muhammad Naseer", "https://www.facebook.com/muhammad.naseer039" },
+                    { 2, "I am a BS Information student", "https://www.facebook.com/muhammad.naseer039", null, "https://www.facebook.com/muhammad.naseer039", "https://www.facebook.com/muhammad.naseer039", "Muhammad Insram", "https://www.facebook.com/muhammad.naseer039" },
+                    { 3, "I am a BS Mathematics student", "https://www.facebook.com/muhammad.naseer039", null, "https://www.facebook.com/muhammad.naseer039", "https://www.facebook.com/muhammad.naseer039", "Muhammad Sultan", "https://www.facebook.com/muhammad.naseer039" },
+                    { 4, "I am a BS English student", "https://www.facebook.com/muhammad.naseer039", null, "https://www.facebook.com/muhammad.naseer039", "https://www.facebook.com/muhammad.naseer039", "Muhammad Ali", "https://www.facebook.com/muhammad.naseer039" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "tbl_settings",
+                columns: new[] { "Id", "LogoFavicon", "Name" },
+                values: new object[] { 1, null, "MALanguageHub" });
+
+            migrationBuilder.InsertData(
+                table: "tbl_studentreviews",
+                columns: new[] { "Id", "Designation", "Name", "Review" },
+                values: new object[,]
+                {
+                    { 1, "Student", "Insram", "Great learning experience!" },
+                    { 2, "Student", "Naseer", "Great learning experience!" },
+                    { 3, "Student", "Sultan", "Great learning experience!" },
+                    { 4, "Student", "Ali", "Great learning experience!" }
                 });
         }
 
@@ -149,6 +223,9 @@ namespace MALanguageHub.Migrations
 
             migrationBuilder.DropTable(
                 name: "tbl_ourprofessionals");
+
+            migrationBuilder.DropTable(
+                name: "tbl_settings");
 
             migrationBuilder.DropTable(
                 name: "tbl_studentreviews");

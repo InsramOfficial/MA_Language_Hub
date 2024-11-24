@@ -24,7 +24,7 @@ namespace MALanguageHub.Models
         [Display(Name = "Facebook")]
         public string FacebookLink { get; set; }
 
-        [Display(Name = "WhatsApp")]
+        [Display(Name = "WhatsApp Number Format(923XXXXXXXXX)")]
         public string WhatsAppLink { get; set; }
 
         [Url(ErrorMessage = "Invalid URL format.")]

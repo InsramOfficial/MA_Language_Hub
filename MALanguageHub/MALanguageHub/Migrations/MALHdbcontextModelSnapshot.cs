@@ -161,7 +161,7 @@ namespace MALanguageHub.Migrations
                             AllocatedTeacher = 1,
                             Description = "Description for Course 1",
                             Duration = "2 Month",
-                            StartingDate = new DateTime(2024, 11, 24, 0, 57, 20, 532, DateTimeKind.Local).AddTicks(4122),
+                            StartingDate = new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5678),
                             Status = "Available",
                             Title = "Course 1"
                         },
@@ -171,7 +171,7 @@ namespace MALanguageHub.Migrations
                             AllocatedTeacher = 1,
                             Description = "Description for Course 2",
                             Duration = "2 Month",
-                            StartingDate = new DateTime(2024, 11, 24, 0, 57, 20, 532, DateTimeKind.Local).AddTicks(4133),
+                            StartingDate = new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5693),
                             Status = "Available",
                             Title = "Course 2"
                         });
@@ -337,6 +337,32 @@ namespace MALanguageHub.Migrations
                             LinkedInLink = "https://www.facebook.com/muhammad.naseer039",
                             Title = "Muhammad Ali",
                             WhatsAppLink = "https://www.facebook.com/muhammad.naseer039"
+                        });
+                });
+
+            modelBuilder.Entity("MALanguageHub.Models.Settings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("LogoFavicon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tbl_settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "MALanguageHub"
                         });
                 });
 
