@@ -29,7 +29,6 @@ namespace MALanguageHub.Pages.Admin
             {
                 var user = db.tbl_login.FirstOrDefault(u => u.Username == login.Username && u.Password == login.Password);
 
-                var settings = db.tbl_settings.FirstOrDefault();
                 if (user == null)
                 {
                     TempData["error"] = "Invalid username or password.";
@@ -38,7 +37,6 @@ namespace MALanguageHub.Pages.Admin
                 else
                 {
                     HttpContext.Session.SetString("FullName", user.FullName);
-                    HttpContext.Session.SetString("LogoFavicon", settings.LogoFavicon);
                     HttpContext.Session.SetString("flag", "true");
                     TempData["success"] = "Login successful!";
                     return RedirectToPage("/Admin/index");
