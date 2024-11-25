@@ -60,9 +60,10 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Adding Details";
-                    return Page();
+                    return RedirectToPage();
+
                 }
-			}
+            }
 			
 		}
     }

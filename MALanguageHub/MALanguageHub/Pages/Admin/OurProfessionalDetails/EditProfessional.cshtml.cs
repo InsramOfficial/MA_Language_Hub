@@ -71,7 +71,8 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Updated Details";
-                    return Page();
+                    return RedirectToPage();
+
                 }
             }
             

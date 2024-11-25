@@ -50,9 +50,10 @@ namespace MALanguageHub.Pages
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Adding Review";
-                    return Page();
+                    return RedirectToPage();
+
                 }
-                
+
             }
             
         }

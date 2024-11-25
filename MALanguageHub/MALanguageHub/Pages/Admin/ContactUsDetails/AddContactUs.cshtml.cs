@@ -49,7 +49,8 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Inserting Data";
-                    return Page();
+                    return RedirectToPage();
+
                 }
             }
             

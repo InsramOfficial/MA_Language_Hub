@@ -68,7 +68,8 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Updating Home Details";
-                    return Page();
+                    return RedirectToPage();
+
                 }
             }
         }

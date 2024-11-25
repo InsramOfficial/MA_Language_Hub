@@ -65,7 +65,8 @@ namespace MALanguageHub.Pages.Admin
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Updating Your Profile";
-                    return Page();
+                    return RedirectToPage();
+
                 }
             }   
         }

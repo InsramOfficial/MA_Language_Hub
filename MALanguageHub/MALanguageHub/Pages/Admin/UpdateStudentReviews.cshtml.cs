@@ -52,7 +52,8 @@ namespace MALanguageHub.Pages.Admin
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Updating Review";
-                    return Page();
+                    return RedirectToPage();
+
                 }
             }
             

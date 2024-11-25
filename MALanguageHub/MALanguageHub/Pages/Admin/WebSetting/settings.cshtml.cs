@@ -53,7 +53,8 @@ namespace MALanguageHub.Pages.Admin.WebSetting
             catch (Exception ex)
             {
                 TempData["error"] = "Error While Updating Settings";
-                return Page();
+                return RedirectToPage();
+
             }
         }
     }

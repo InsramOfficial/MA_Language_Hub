@@ -46,7 +46,8 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
             catch (Exception ex)
             {
                 TempData["error"] = "Error While Deleting Record";
-                return Page();
+                return RedirectToPage();
+
             }
         }
 

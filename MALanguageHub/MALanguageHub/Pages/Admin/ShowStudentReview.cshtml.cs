@@ -53,9 +53,10 @@ namespace MALanguageHub.Pages
 			catch (Exception ex)
 			{
 				TempData["error"] = "An error occurred while deleting the course.";
-				return Page();
-			}
-		}
+                return RedirectToPage();
+
+            }
+        }
 
 	}
 }

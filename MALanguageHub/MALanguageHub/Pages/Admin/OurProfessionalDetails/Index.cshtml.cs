@@ -43,8 +43,9 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             catch (Exception ex)
             {
                 TempData["error"] = "Error While Deleting Record";
-                return Page();
+                return RedirectToPage();
+
             }
-		}
+        }
     }
 }

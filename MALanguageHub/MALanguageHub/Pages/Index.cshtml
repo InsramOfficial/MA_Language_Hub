@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <link rel="icon" type="image/x-icon"
-          href="https://www.hec.gov.pk/english/universities/PublishingImages/University%20of%20Kotli.png">
+          href="~/images/@Model.Settings.LogoFavicon">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -25,11 +25,16 @@
     <link rel="stylesheet" href="~/root_files/css/templatemo-style.css">
     <style>
         .courses-image img {
-            max-width: 400px; 
+            max-width: 400px;
             height: 300px;
             display: block;
-            object-fit: cover; 
-            object-position: top;
+        }
+
+        .team-image  img{
+            max-width: 400px;
+            height: 300px;
+            display: block;
+           
         }
         </style>
 
@@ -61,7 +66,7 @@
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                 </button>
-                <img class="navbar-brand" style="margin-top:-12px;" src="https://www.hec.gov.pk/english/universities/PublishingImages/University%20of%20Kotli.png" alt="">
+                <img class="navbar-brand" style="margin-top:-12px;" src="~/images/@Model.Settings.LogoFavicon" alt="">
                 <a href="/Index" class="navbar-brand responsivenesss" >@Model.Settings.Name</a>
             </div>
     
@@ -158,7 +163,11 @@
     <section id="about">
         <div class="container">
             <div class="row">
-
+                <div class="col-md-12 col-sm-12" style="margin-bottom:-100px;">
+                    <div class="section-title">
+                        <h2></h2>
+                    </div>
+                </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="about-info">
                         <h2>Start your journey to a better life with online practical courses</h2>
@@ -189,43 +198,38 @@
     </section>
 
 
-
-    <!-- TEAM -->
     <section id="team">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-12 col-sm-12" style="margin-bottom:-100px;">
                     <div class="section-title">
                         <h2>Teachers <small>Meet Professional Trainers</small></h2>
                     </div>
                 </div>
+                @foreach (var professionals in Model.ourProfessionals){
 
-                @foreach(var professionals in Model.ourProfessionals)
-                {
-                    <div class="col-md-3 col-sm-6 " style="margin-top:50px;">
-                        <div class="team-thumb" style="height:305px;">
-                            <div class="fixed-image-container">
-                                <img src="~/images/@professionals.ImageName"  style="width:261px; height:180px;"  alt="">
+               
+                    <div class="col-md-3 col-sm-6" style="margin-top:100px; height:400px;">
+                        <div class="team-thumb " >
+                            <div class="team-image">
+                                    <img src="~/images/@professionals.ImageName" class="img-responsive" alt="">
                             </div>
                             <div class="team-info">
                                 <h3>@professionals.Title</h3>
                                 <span>@professionals.Description</span>
+
                             </div>
                             <ul class="social-icon">
-                                <li><a href="@professionals.FacebookLink" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                <li><a href="@professionals.InstagramLink" class="fa fa-instagram"></a></li>
-                                <li><a href="@professionals.LinkedInLink" class="fa fa-linkedin"></a></li>
-                                <li>
-                                    <a href="https://wa.me/@professionals.WhatsAppLink" target="_blank" class="fa fa-whatsapp"></a>
-                                </li>
-
+                                    <li><a href="@professionals.FacebookLink" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                    <li><a href="@professionals.InstagramLink" class="fa fa-instagram"></a></li>
+                                    <li><a href="@professionals.LinkedInLink" class="fa fa-linkedin"></a></li>
                             </ul>
                         </div>
                     </div>
+
                 }
 
-             
 
             </div>
         </div>
