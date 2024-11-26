@@ -28,8 +28,8 @@ namespace MALanguageHub.Pages.Admin
             int coursesCount = db.tbl_courses.Count();
             int professionalsCount = db.tbl_ourprofessionals.Count();
             int studentReviewsCount = db.tbl_studentreviews.Count();
-            
-           
+
+            ViewData["title"] = "Admin Home";
             ViewData["HomeCount"] = homeCount;
             ViewData["CoursesCount"] = coursesCount;
             ViewData["ProfessionalsCount"] = professionalsCount;

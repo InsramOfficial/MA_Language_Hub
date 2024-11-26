@@ -1,12 +1,11 @@
 ﻿@page
 @model MALanguageHub.Pages.Admin.LoginModel
+@using MALanguageHub.Services
+@inject FaviconService faviconservice
 @{
     Layout = null;
+}
 
-    ViewData["Title"] = "MALanguageHub | Login";
-    }
-
-<title>@ViewData["Title"]</title>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +16,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
+    @{
+        var favicon = faviconservice.GetFaviconURL();
+    }
+    @if (!string.IsNullOrEmpty(favicon))
+    {
+        <link rel="icon" type="image/x-icon"
+              href="~/images/@favicon">
+    }
+    <title>Login - MALH</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/Admin_files/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

@@ -1,11 +1,14 @@
 ﻿@page
 @model MALanguageHub.Pages.YourReviewModel
+@using MALanguageHub.Services
+@inject FaviconService faviconservice
 @{
 }
 <!doctype html>
 <html lang="en">
 
 <head>
+
     <!--    meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,10 +16,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icomoon-free@latest/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css">
+    @{
+        var favicon = faviconservice.GetFaviconURL();
+    }
+    @if (!string.IsNullOrEmpty(favicon))
+    {
+        <link rel="icon" type="image/x-icon"
+              href="~/images/@favicon">
+    }
 
-
-
-    <title>Review Form</title>
+    <title>Review - MALH</title>
+    
     <link href="~/Admin_files/css/ToastStyleSheet.css" rel="stylesheet">
     <link href="~/root_files/css/ReviewPageStyleSheet.css" rel="stylesheet"/>
 </head>

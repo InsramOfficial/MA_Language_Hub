@@ -23,6 +23,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Add Professional";
             UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }

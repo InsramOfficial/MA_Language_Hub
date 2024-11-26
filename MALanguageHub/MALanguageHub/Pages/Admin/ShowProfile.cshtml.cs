@@ -26,6 +26,7 @@ namespace MALanguageHub.Pages.Admin
             Login = db.tbl_login.FirstOrDefault();
             ImageName = Login.ImageName;
             UserName = HttpContext.Session.GetString("FullName");
+            ViewData["title"] = "Profile";
             return Page();
         }
 

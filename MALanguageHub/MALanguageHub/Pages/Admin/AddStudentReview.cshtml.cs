@@ -24,6 +24,7 @@ namespace MALanguageHub.Pages
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Add Review";
             UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }

@@ -22,6 +22,7 @@ namespace MALanguageHub.Pages.Admin.HomeDetails
                 TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Home Details";
             UserName = HttpContext.Session.GetString("FullName");
             Homedetails = db.tbl_home.Take(3).ToList();
             return Page();

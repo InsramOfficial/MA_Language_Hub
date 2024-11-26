@@ -23,6 +23,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Edit Professional";
             professional = db.tbl_ourprofessionals.Where(x => x.Id == id).FirstOrDefault();
             UserName = HttpContext.Session.GetString("FullName");
             return Page();
@@ -71,7 +72,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
                 catch (Exception ex)
                 {
                     TempData["error"] = "Error While Updated Details";
-                    return RedirectToPage();
+                    return RedirectToPage("Index");
 
                 }
             }

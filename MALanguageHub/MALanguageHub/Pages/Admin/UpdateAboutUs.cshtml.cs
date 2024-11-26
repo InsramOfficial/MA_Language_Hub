@@ -25,6 +25,7 @@ namespace MALanguageHub.Pages.Admin
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Edit AboutUs";
             Aboutus = db.tbl_aboutus.FirstOrDefault();
             UserName = HttpContext.Session.GetString("FullName");
             return Page();

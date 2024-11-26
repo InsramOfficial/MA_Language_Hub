@@ -1,4 +1,5 @@
 using MALanguageHub.Data;
+using MALanguageHub.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddRazorPages();
 string connectionstring = builder.Configuration.GetConnectionString("myconstring");
 builder.Services.AddDbContext<MALHdbcontext>(option => option.UseSqlServer(connectionstring));
 builder.Services.AddSession();
-
+builder.Services.AddScoped<FaviconService>();
 var app = builder.Build();
 
 
