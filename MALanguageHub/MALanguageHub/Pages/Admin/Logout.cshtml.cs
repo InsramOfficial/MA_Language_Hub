@@ -17,6 +17,7 @@ namespace MALanguageHub.Pages.Admin
             {
                 return RedirectToPage("/Admin/Login");
             }
+            
         }
     }
 }

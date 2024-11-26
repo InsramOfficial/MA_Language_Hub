@@ -23,6 +23,7 @@ namespace MALanguageHub.Pages
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Reviews Detail";
             StudentReviews = db.tbl_studentreviews.ToList();
             UserName = HttpContext.Session.GetString("FullName");
             return Page();

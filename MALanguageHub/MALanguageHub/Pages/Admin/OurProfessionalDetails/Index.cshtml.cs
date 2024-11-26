@@ -21,6 +21,7 @@ namespace MALanguageHub.Pages.Admin.OurProfessionalDetails
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Professionals Detail";
             professionals = db.tbl_ourprofessionals.ToList();
             UserName = HttpContext.Session.GetString("FullName");
             return Page();

@@ -16,6 +16,7 @@
                 <div class="mb-3">
                     <label asp-for="professional.Title" class="form-label"></label>
                     <input class="form-control" asp-for="professional.Title" placeholder="Enter Your Title">
+                    <input asp-for="professional.Id" type="hidden" />
                     <span asp-validation-for="professional.Title" class="text-danger"></span>
                 </div>
 
@@ -60,7 +61,7 @@
 
         <div class="row justify-content-center mt-3">
             <div class="col-md-4 text-center">
-                <a href="/Admin/HomeDetails/Index" class="btn btn-secondary">Back</a>
+                <a href="/Admin/OurProfessionalDetails/Index" class="btn btn-secondary">Back</a>
                 <input type="submit" value="Update Professional" class="btn btn-success">
             </div>
         </div>

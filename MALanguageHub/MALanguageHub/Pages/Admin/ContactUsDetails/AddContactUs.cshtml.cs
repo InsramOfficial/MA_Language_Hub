@@ -21,6 +21,7 @@ namespace MALanguageHub.Pages.Admin.ContactUsDetails
                 TempData["warning"] = "Please Login Before Access This Page";
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Add Contact Info";
             UserName = HttpContext.Session.GetString("FullName");
             return Page();
         }

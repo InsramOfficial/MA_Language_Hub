@@ -23,6 +23,7 @@ namespace MALanguageHub.Pages.Admin.WebSetting
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Settings Detail";
             settings = db.tbl_settings.FirstOrDefault();
             UserName = HttpContext.Session.GetString("FullName");
             return Page();

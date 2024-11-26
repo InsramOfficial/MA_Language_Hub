@@ -26,6 +26,7 @@ namespace MALanguageHub.Pages.Admin
             {
                 return RedirectToPage("/Admin/Login");
             }
+            ViewData["title"] = "Edit Course";
             courses = db.tbl_courses.Find(id);
 			professionals = db.tbl_ourprofessionals.ToList();
             UserName = HttpContext.Session.GetString("FullName");
