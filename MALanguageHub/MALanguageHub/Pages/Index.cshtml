@@ -195,7 +195,8 @@
         </div>
     </section>
 
-
+   
+    <!-- Our Professional -->
     <section id="team">
         <div class="container">
             <div class="row">
@@ -205,37 +206,116 @@
                         <h2>Teachers <small>Meet Professional Trainers</small></h2>
                     </div>
                 </div>
-                @foreach (var professionals in Model.ourProfessionals){
 
-               
+                @foreach (var professionals in Model.ourProfessionals)
+                {
                     <div class="col-md-3 col-sm-6" style="margin-top:100px; height:400px;">
-                        <div class="team-thumb " >
+                        <div class="team-thumb">
                             <div class="team-image">
-                                    <img src="~/images/@professionals.ImageName" class="img-responsive" alt="">
+                                <img src="~/images/@professionals.ImageName" class="img-responsive" alt="">
                             </div>
                             <div class="team-info">
                                 <h3>@professionals.Title</h3>
-                                <span>@professionals.Description</span>
-
+                                @{
+                                    var description = professionals.Description;
+                                    var isLongDescription = description.Length > 26;
+                                    var shortDescription = isLongDescription ? description.Substring(0, 26) + "..." : description;
+                                }
+                                <span class="professional-description" data-full="@description">@shortDescription</span>
+                                @if (isLongDescription)
+                                {
+                                    <span class="toggle-description btn btn-outline"
+                                          style="cursor:pointer; text-decoration:none;">Read more</span>
+                                }
                             </div>
                             <ul class="social-icon">
-                                    <li><a href="@professionals.FacebookLink" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                    <li><a href="@professionals.InstagramLink" class="fa fa-instagram"></a></li>
-                                    <li><a href="@professionals.LinkedInLink" class="fa fa-linkedin"></a></li>
+                                <li>
+                                    <a href="@professionals.FacebookLink" class="fa fa-facebook-square"
+                                       attr="facebook icon"></a>
+                                </li>
+                                <li><a href="@professionals.InstagramLink" class="fa fa-instagram"></a></li>
+                                <li><a href="@professionals.LinkedInLink" class="fa fa-linkedin"></a></li>
                             </ul>
                         </div>
                     </div>
-
                 }
-
 
             </div>
         </div>
     </section>
 
-
     <!-- Courses -->
     <section id="courses">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title">
+                        <h2>Popular Courses <small>Upgrade your skills with newest courses</small></h2>
+                    </div>
+
+                    <div class="owl-carousel owl-theme owl-courses">
+                        @foreach (var course in Model.Courses)
+                        {
+                            <div class="col-md-4 col-sm-4">
+                                <div class="item">
+                                    <div class="courses-thumb">
+                                        <div class="courses-top">
+                                            <div class="courses-image">
+                                                <img src="~/images/@course.ImageName" class="img-responsive" alt="">
+                                            </div>
+                                            <div class="courses-date">
+                                                <span><i class="fa fa-calendar"></i>@course.StartingDate</span>
+                                                <span><i class="fa fa-clock-o"></i>@course.Duration</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="courses-detail">
+                                            <h3>@course.Title</h3>
+                                            @{
+                                                var description = course.Description;
+                                                var isLongDescription = description.Length > 40;
+                                                var shortDescription = isLongDescription ? description.Substring(0, 40) + "..." :
+                                                description;
+                                            }
+                                            <p class="course-description" data-full="@description">@shortDescription</p>
+                                            @if (isLongDescription)
+                                            {
+                                                <span class="toggle-description btn-btn-outline"
+                                                      style="cursor:pointer; text-decoration:none;">Read more</span>
+                                            }
+                                        </div>
+
+                                        <div class="courses-info">
+                                            @foreach (var professional in Model.ourProfessionals)
+                                            {
+                                                if (course.AllocatedTeacher == professional.Id)
+                                                {
+                                                    <div class="courses-author">
+                                                        <img src="~/images/@professional.ImageName" class="custom-img-responsive"
+                                                             alt="">
+                                                        <span>@professional.Title</span>
+                                                    </div>
+                                                }
+                                            }
+                                            <div class="courses-price">
+                                                <span>@course.Status</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    @* <section id="courses">
         <div class="container">
             <div class="row">
 
@@ -291,7 +371,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> *@
 
 
     <!-- TESTIMONIAL -->
@@ -305,25 +385,29 @@
                     </div>
 
                     <div class="owl-carousel owl-theme owl-client">
-                      @foreach(var reviews in Model.StudentReviews)
+                        @foreach (var reviews in Model.StudentReviews)
                         {
                             <div class="col-md-4 col-sm-4">
                                 <div class="item">
-                                   
                                     <div class="tst-author">
                                         <h4>@reviews.Name</h4>
                                         <span>@reviews.Designation</span>
                                     </div>
                                     <small style="display:flex; flex-direction:row;">Review</small>
-                                    <p>
-                                        @reviews.Review
-                                    </p>
-                                  
+                                    @{
+                                        var reviewText = reviews.Review;
+                                        var isLongReview = reviewText.Length > 16;
+                                        var shortReview = isLongReview ? reviewText.Substring(0, 16) + "..." : reviewText;
+                                    }
+                                    <p class="review-description" data-full="@reviewText">@shortReview</p>
+                                    @if (isLongReview)
+                                    {
+                                        <span class="toggle-description btn btn-outline"
+                                              style="cursor:pointer; text-decoration:none;">Read more</span>
+                                    }
                                 </div>
                             </div>
                         }
-
-
                     </div>
 
                 </div>
@@ -427,7 +511,7 @@
                         </ul>
 
                         <div class="copyright-text">
-                            <p>Copyright &copy; 2024 MA Language Hub</p>
+                            <p>Copyright &copy; 2024 MA Language Hub. All rights reserved.</p>
                          
                            
                         </div>
@@ -492,6 +576,7 @@
     <script src="~/root_files/js/owl.carousel.min.js"></script>
     <script src="~/root_files/js/smoothscroll.js"></script>
     <script src="~/root_files/js/custom.js"></script>
+    <script src="~/root_files/js/ReadMore.js"></script>
 
 </body>
 

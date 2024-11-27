@@ -101,8 +101,8 @@ namespace MALanguageHub.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(18)", maxLength: 18, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(72)", maxLength: 72, nullable: false),
                     FacebookLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WhatsAppLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InstagramLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -158,8 +158,8 @@ namespace MALanguageHub.Migrations
                 columns: new[] { "Id", "AllocatedTeacher", "Description", "Duration", "ImageName", "StartingDate", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "Description for Course 1", "2 Month", null, new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5678), "Available", "Course 1" },
-                    { 2, 1, "Description for Course 2", "2 Month", null, new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5693), "Available", "Course 2" }
+                    { 1, 1, "Description for Course 1", "2 Month", null, new DateTime(2024, 11, 26, 20, 4, 18, 633, DateTimeKind.Local).AddTicks(5156), "Available", "Course 1" },
+                    { 2, 1, "Description for Course 2", "2 Month", null, new DateTime(2024, 11, 26, 20, 4, 18, 633, DateTimeKind.Local).AddTicks(5166), "Available", "Course 2" }
                 });
 
             migrationBuilder.InsertData(

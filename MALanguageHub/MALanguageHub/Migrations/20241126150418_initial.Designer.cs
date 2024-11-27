@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MALanguageHub.Migrations
 {
     [DbContext(typeof(MALHdbcontext))]
-    [Migration("20241124094655_initial")]
+    [Migration("20241126150418_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,7 +163,7 @@ namespace MALanguageHub.Migrations
                             AllocatedTeacher = 1,
                             Description = "Description for Course 1",
                             Duration = "2 Month",
-                            StartingDate = new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5678),
+                            StartingDate = new DateTime(2024, 11, 26, 20, 4, 18, 633, DateTimeKind.Local).AddTicks(5156),
                             Status = "Available",
                             Title = "Course 1"
                         },
@@ -173,7 +173,7 @@ namespace MALanguageHub.Migrations
                             AllocatedTeacher = 1,
                             Description = "Description for Course 2",
                             Duration = "2 Month",
-                            StartingDate = new DateTime(2024, 11, 24, 14, 46, 54, 698, DateTimeKind.Local).AddTicks(5693),
+                            StartingDate = new DateTime(2024, 11, 26, 20, 4, 18, 633, DateTimeKind.Local).AddTicks(5166),
                             Status = "Available",
                             Title = "Course 2"
                         });
@@ -268,8 +268,8 @@ namespace MALanguageHub.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(72)
+                        .HasColumnType("nvarchar(72)");
 
                     b.Property<string>("FacebookLink")
                         .IsRequired()
@@ -288,8 +288,8 @@ namespace MALanguageHub.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(18)
+                        .HasColumnType("nvarchar(18)");
 
                     b.Property<string>("WhatsAppLink")
                         .IsRequired()
